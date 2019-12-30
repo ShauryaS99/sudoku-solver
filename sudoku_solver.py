@@ -89,5 +89,22 @@ def execute(input_board):
     print("\n Solved Board:")
     print_board(solved_board)
 
-input_board = scrape()
+#Sanitize Input
+def sanitize_input(prompt):
+    options = ["easy", "medium", "hard"]
+    while True:
+        try:
+            value = str(input(prompt))
+        except ValueError:
+            print("Please give your response as [easy, medium, hard]")
+            continue
+        if value not in options:
+            print("Please give your response as [easy, medium, hard]")
+            continue
+        else:
+            break
+    return value
+    
+difficulty = sanitize_input("What difficulty do you want? [easy/ medium/ hard] ")
+input_board = scrape(difficulty)
 execute(input_board)

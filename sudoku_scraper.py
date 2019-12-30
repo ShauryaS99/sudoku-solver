@@ -3,7 +3,7 @@ import urllib.request
 import regex as re
 import json
 
-def scrape():
+def scrape(difficulty):
 	source = urllib.request.urlopen('https://www.nytimes.com/puzzles/sudoku/medium').read()
 	soup = bs.BeautifulSoup(source,'lxml')
 
@@ -14,7 +14,7 @@ def scrape():
 	# parse x:
 	y = json.loads(script_text)
 	# the result is a Python dictionary:
-	puzzle = y["medium"]["puzzle_data"]["puzzle"]
+	puzzle = y[difficulty]["puzzle_data"]["puzzle"]
 	# print(script_text)
 	n = 9
 	board = [puzzle[i:i + 9] for i in range(0, len(puzzle), 9)]
